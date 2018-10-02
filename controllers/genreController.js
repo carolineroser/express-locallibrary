@@ -3,8 +3,9 @@ var Book = require('../models/book');
 var async = require('async');
 
 // Display list of all Genre.
-exports.genre_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Genre list');
+exports.genre_list = function(req, res, next) {
+    genre_list.find()
+        .sort([['genre' , 'assending']]);
 };
 
 // Display detail page for a specific Genre.
