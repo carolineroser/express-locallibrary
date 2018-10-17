@@ -6,9 +6,14 @@ const { sanitizeBody } = require('express-validator/filter');
 
 // Display list of all Genre.
 exports.genre_list = function(req, res, next) {
-    genre_list.find()
-        .sort([['genre' , 'assending']]);
-};
+    Genre.find()
+        .sort([['name' , 'ascending']])
+        .exec(function (err, list_genre) {
+            if (err) { return next(err); }
+            //Successful, so render
+            res.render('genre_list', { title: 'Genre List', genre_list: list_genre });     
+        });
+        };
 
 // Display detail page for a specific Genre.
 exports.genre_detail = function(req, res, next) {
